@@ -11,7 +11,7 @@ var bird, slingshot;
 var gameState = "onSling";
 
 function preload() {
-    backgroundImg = loadImage("sprites/bg.png");
+    getBackgroundImage();
 }
 
 function setup(){
@@ -45,6 +45,9 @@ function setup(){
 }
 
 function draw(){
+    if(backgroundImg!= null){
+
+    
     background(backgroundImg);
     Engine.update(engine);
     //strokeWeight(4);
@@ -66,7 +69,8 @@ function draw(){
     bird.display();
     platform.display();
     //log6.display();
-    slingshot.display();    
+    slingshot.display();  
+    }  
 }
 
 function mouseDragged(){
@@ -85,4 +89,22 @@ function keyPressed(){
     if(keyCode === 32){
        // slingshot.attach(bird.body);
     }
+
+}
+async function getBackgroundImage(){
+var response = await fetch ("http://worldtimeapi.org/api/timezone/Antarctica/DumontDUrville");
+console.log(response);
+var respJSON = await response.json();
+console.log(respJSON);
+var date_time = respJSON.datetime; 
+console.log(date_time);
+var hour = date_time.slice(11,13);
+console.log(hour);
+if(hour>06 && hour<18){
+    backgroundImg = loadImage("sprites/bg.png")
+}
+else {
+    backgroundImg = loadImage("sprites/bg2.jpg")
+}
+
 }
