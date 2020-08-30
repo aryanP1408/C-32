@@ -92,7 +92,7 @@ function keyPressed(){
 
 }
 async function getBackgroundImage(){
-var response = await fetch ("http://worldtimeapi.org/api/timezone/Antarctica/DumontDUrville");
+var response = await fetch ("https://worldtimeapi.org/api/timezone/Antarctica/DumontDUrville");
 console.log(response);
 var respJSON = await response.json();
 console.log(respJSON);
